@@ -1,6 +1,0 @@
-Good: * AutoFill present for all input fields * Pre filled-in text instructions
-* Hide Password working as expected Bad: * No username minimum length set i.e.
-“R” or “r” work * 1 or more spaces are considered valid usernames * Spaces
-inside password are validated: i.e. “1, Aa?\!£$%^&*()-=, ?” * No email data
-validation conditions in place. i.e. “roro”, “noemail” work including empty
-spaces * No email length limitation * No sign up confirmation alert or message
