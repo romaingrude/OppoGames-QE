@@ -33,6 +33,8 @@ public class OppoGames_Login_POM {
     public WebElement loginErrorMessage;
 
 
+    
+
     public OppoGames_Login_POM(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);

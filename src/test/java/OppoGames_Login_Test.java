@@ -30,18 +30,18 @@ public class OppoGames_Login_Test {
                 ChromeOptions optionsC = new ChromeOptions();
                 optionsC.addArguments("--headless");
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(optionsC);
                 break;
 
             case "firefox":
                 FirefoxOptions optionsF = new FirefoxOptions();
                 optionsF.addArguments("--headless");
                 WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                driver = new FirefoxDriver(optionsF);
                 break;
 
             case "safari":
-//                WebDriverManager.safaridriver().setup();
+                WebDriverManager.safaridriver().setup();
                 driver = new SafariDriver();
                 driver.manage().window().maximize();
                 break;
@@ -69,6 +69,11 @@ public class OppoGames_Login_Test {
 
     @RegisterExtension
     ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "failed_screenshots");
+
+    @Test void checkPageTitleName() {
+        // This title is meant to change as it is currently using the default React title
+        assertEquals("React App", driver.getTitle());
+    }
 
     @Test
     public void userLogsInRedirectedToLobby() throws InterruptedException {
