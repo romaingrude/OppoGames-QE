@@ -14,7 +14,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OppoGames_Login_Test {
+class OppoGames_Login_Test {
 
     public static WebDriver driver;
 
@@ -76,7 +76,7 @@ public class OppoGames_Login_Test {
     }
 
     @Test
-    public void userLogsInRedirectedToLobby() throws InterruptedException {
+    void userLogsInRedirectedToLobby() throws InterruptedException {
         login.loggingIn("test@test.com", "55555");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500));
         wait.until(ExpectedConditions.urlToBe("http://localhost:3000/lobby"));
@@ -84,7 +84,7 @@ public class OppoGames_Login_Test {
     }
 
     @Test
-    public void testWithInvalidCredentials(){
+    void testWithInvalidCredentials(){
         login.loggingIn("fakeemail@fake.com", "Fakepwd123!");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500));
         wait.until(ExpectedConditions.visibilityOf(login.loginErrorMessage));
@@ -93,7 +93,7 @@ public class OppoGames_Login_Test {
     }
 
     @Test
-    public void testWithEmptyFields(){
+    void testWithEmptyFields(){
         login.loggingIn("", "");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500));
         wait.until(ExpectedConditions.visibilityOf(login.loginErrorMessage));
@@ -102,14 +102,14 @@ public class OppoGames_Login_Test {
     }
 
     @Test
-    public void checksPasswordIsHidden(){
+    void checksPasswordIsHidden(){
         login.inputPassword.click();
         login.inputPassword.sendKeys("randompassword");
         assertEquals("password", login.inputPassword.getAttribute("type"));
     }
 
     @Test
-    public void checksPasswordIsDisplayed(){
+     void checksPasswordIsDisplayed(){
         login.inputPassword.click();
         login.inputPassword.sendKeys("randompassword");
         login.passwordShowButton.click();
@@ -117,7 +117,7 @@ public class OppoGames_Login_Test {
     }
 
     @Test
-    public void checkErrorMessageWithInvalidOrEmptyFields(){
+    void checkErrorMessageWithInvalidOrEmptyFields(){
         /* This error message is expected to change from "or password" to
         "and password". Please refer to the bug tracker and Log In test report.
     */
@@ -129,7 +129,7 @@ public class OppoGames_Login_Test {
     }
 
     @Test
-    public void checksRegisterLinkIsPresentAndRedirectsToSignupPage(){
+    void checksRegisterLinkIsPresentAndRedirectsToSignupPage(){
         assertTrue(login.registerLink.isDisplayed());
         login.registerLink.click();
         assertEquals("http://localhost:3000/signup", driver.getCurrentUrl());

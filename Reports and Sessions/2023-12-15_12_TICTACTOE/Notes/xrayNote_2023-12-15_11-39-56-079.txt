@@ -1,0 +1,1 @@
+Observed behaviour: * Refreshing the page allows the user to play again

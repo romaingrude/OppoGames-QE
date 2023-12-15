@@ -1,0 +1,5 @@
+Risks: * Any user can join any game currently being played * Player “A” or “B”
+can play multiple times without having to wait their turn * Win/Loss conditions
+not working as expected * A user not in the game session can have access to the
+game currently being played and interact with the board and/or the buttons. ie
+no session management

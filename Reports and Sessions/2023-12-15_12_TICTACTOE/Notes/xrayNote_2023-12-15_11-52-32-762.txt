@@ -1,0 +1,2 @@
+When Player “A” has placed 3 markers anywhere on the board, without respecting
+any win condition, the game shows “You have a draw\!”
