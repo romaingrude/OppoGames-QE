@@ -27,6 +27,8 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.6.1'
     testImplementation('org.junit.jupiter:junit-jupiter-params')
+    implementation 'org.apache.poi:poi:5.0.0'
+    implementation 'org.apache.poi:poi-ooxml:5.0.0'
 }
 
 test {

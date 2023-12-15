@@ -22,3 +22,19 @@ X
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
 T
 $src/test/java/ScreenshotWatcher.java,a/b/ab735d1806cf48819e2c58b22e0b2348f2836a77
+‡
+WReports and Sessions/2023-12-15_12_TICTACTOE/Notes/xrayNote_2023-12-15_11-39-56-079.txt,e/1/e112f56225cfeb5390a982d74e3fe0ee37750af1
+‡
+WReports and Sessions/2023-12-15_12_TICTACTOE/Notes/xrayNote_2023-12-15_11-22-37-062.txt,e/e/ee77988c56ac4e13ed4c67b2130e225ee5689c41
+‡
+WReports and Sessions/2023-12-15_12_TICTACTOE/Notes/xrayNote_2023-12-15_11-52-32-762.txt,b/3/b366aeb71f7f2144ec9ef2ba5e68cb65d9840d33
+N
+src/test/java/SignUp_Test.java,d/3/d34d3507ca26222c108ae8f68e6dd8c5548af867
+M
+src/test/java/SignUp_POM.java,f/d/fd48f0733081a99f206687257e93a8287c92240d
+M
+src/test/java/Login_Test.java,a/e/ae645e028a178abe7bde80570d9a95c5d5297421
+L
+src/test/java/Login_POM.java,e/f/ef124ae708dacf547b08f38f98e7b13f9cedf0f2
+N
+src/test/java/SignUp_TEST.java,0/b/0bb9337e1e5026ef2fd6c9ed85315e241cabe93c

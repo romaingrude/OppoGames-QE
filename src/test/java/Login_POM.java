@@ -1,15 +1,13 @@
 
-import com.google.gson.internal.bind.util.ISO8601Utils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 
-public class OppoGames_Login_POM {
+public class Login_POM {
 
     private final WebDriver driver;
     private final WebDriverWait wait;
@@ -35,7 +33,7 @@ public class OppoGames_Login_POM {
 
     
 
-    public OppoGames_Login_POM(WebDriver driver){
+    public Login_POM(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));

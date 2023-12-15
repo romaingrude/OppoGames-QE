@@ -1,6 +1,9 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.poi.ss.usermodel.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,15 +13,19 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OppoGames_Login_Test {
+class Login_TEST {
 
-    public static WebDriver driver;
-
-    private static OppoGames_Login_POM login;
+    static WebDriver driver;
+    static Login_POM login;
 
 
     @BeforeAll
@@ -53,7 +60,7 @@ class OppoGames_Login_Test {
 
     @BeforeEach
     public void setupPage() throws InterruptedException {
-        login = new OppoGames_Login_POM(driver);
+        login = new Login_POM(driver);
         login.navigateLogin();
     }
 
@@ -69,6 +76,45 @@ class OppoGames_Login_Test {
 
     @RegisterExtension
     ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "failed_screenshots");
+
+    private static Iterable<Object[]> getLoginData() throws IOException {
+        String filePath = "src/test/resources/login_data.xlsx";
+        String sheetName = "Sheet1";
+
+        Workbook workbook = WorkbookFactory.create(new FileInputStream(filePath));
+        Sheet sheet = workbook.getSheet(sheetName);
+
+        Iterator<Row> rowIterator = sheet.rowIterator();
+        Collection<Object[]> data = new ArrayList<>();
+
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Cell emailCell = row.getCell(0);
+            Cell passwordCell = row.getCell(1);
+
+            String email = emailCell.getStringCellValue().trim();
+            String password = passwordCell.getStringCellValue().trim();
+
+            // Skip the row if both email and password are empty
+            if (!email.isEmpty() || !password.isEmpty()) {
+                data.add(new Object[]{email, password});
+            }
+        }
+
+        workbook.close();
+        return data;
+    }
+
+    @ParameterizedTest
+    @MethodSource("getLoginData")
+    void testLoginWithCredentials(String email, String password) {
+        login.loggingIn(email, password);
+        // Add assertions for successful login or whatever you need to test
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500));
+        wait.until(ExpectedConditions.urlToBe("http://localhost:3000/lobby"));
+        assertEquals("http://localhost:3000/lobby", driver.getCurrentUrl());
+
+    }
 
     @Test void checkPageTitleName() {
         // This title is meant to change as it is currently using the default React title
