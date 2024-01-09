@@ -2,6 +2,7 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -31,7 +32,6 @@ public class Login_POM {
     public WebElement loginErrorMessage;
 
 
-    
 
     public Login_POM(WebDriver driver){
         this.driver = driver;
@@ -44,12 +44,17 @@ public class Login_POM {
     }
 
     public void loggingIn(String email, String password){
-        inputEmail.click();
-        inputEmail.sendKeys(email);
-        inputPassword.click();
-        inputPassword.sendKeys(password);
+        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(inputEmail));
+        emailInput.click();
+        emailInput.sendKeys(email);
+
+        WebElement passwordInput = wait.until(ExpectedConditions.elementToBeClickable(inputPassword));
+        passwordInput.click();
+        passwordInput.sendKeys(password);
+
         submitLoginButton.click();
     }
+
 
 
     public void clearLocalStorage(){
