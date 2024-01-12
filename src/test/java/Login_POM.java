@@ -28,8 +28,9 @@ public class Login_POM {
     @FindBy(id = "toggle-pw-visibility-button")
     public WebElement passwordShowButton;
 
-    @FindBy(css = "p[class*='errorMessage']")
+    @FindBy(css = "p[aria-label='Login Error Message']")
     public WebElement loginErrorMessage;
+
 
 
 

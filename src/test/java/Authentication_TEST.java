@@ -284,15 +284,17 @@ public class Authentication_TEST {
 
         @Test void checkPageTitleName() {
             // This title is meant to change as it is currently using the default React title
-            assertEquals("React App", driver.getTitle());
+            assertEquals("Oppo Games", driver.getTitle());
         }
 
         @Test
         void userLogsInRedirectedToLobby() throws InterruptedException {
             login.loggingIn("testemail@gmail.com", "Password123!");
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-            wait.until(ExpectedConditions.urlToBe("http://localhost:3000/lobby"));
-            assertEquals("http://localhost:3000/lobby", driver.getCurrentUrl());
+            wait.until(ExpectedConditions.urlToBe("http://localhost:3000/"));
+            assertEquals("http://localhost:3000/", driver.getCurrentUrl());
+            //Clear local storage to avoid being already logged in other tests
+            login.clearLocalStorage();
         }
 
         @Test
@@ -302,6 +304,7 @@ public class Authentication_TEST {
             wait.until(ExpectedConditions.visibilityOf(login.loginErrorMessage));
             assertTrue(login.loginErrorMessage.isDisplayed());
             assertEquals("http://localhost:3000/login", driver.getCurrentUrl());
+            assertEquals("Enter a valid email or password", login.loginErrorMessage.getText());
         }
 
         @Test
@@ -314,9 +317,9 @@ public class Authentication_TEST {
         }
 
         @Test
-        void checksPasswordIsHidden(){
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-            wait.until(ExpectedConditions.elementToBeClickable(login.inputPassword));
+        void checksPasswordIsHidden() throws InterruptedException {
+//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+//            wait.until(ExpectedConditions.elementToBeClickable(login.inputPassword));
             login.inputPassword.click();
             login.inputPassword.sendKeys("randompassword");
             assertEquals("password", login.inputPassword.getAttribute("type"));
